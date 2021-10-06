@@ -1,0 +1,1 @@
+cmd_/home/rtrk/linux-kernel-labs/modules/nfsroot/root/projekat/encrypter/built-in.o :=  rm -f /home/rtrk/linux-kernel-labs/modules/nfsroot/root/projekat/encrypter/built-in.o; arm-linux-gnueabihf-ar rcsD /home/rtrk/linux-kernel-labs/modules/nfsroot/root/projekat/encrypter/built-in.o

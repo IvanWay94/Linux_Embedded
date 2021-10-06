@@ -1,0 +1,53 @@
+'/dev/encrypter_project' device is successfully opened!
+Written message: 0000000001
+ret_val: 10
+Read message: 0000000001
+ret_val: 10
+'/dev/encrypter_project' device is successfully opened!
+Written message: 0000000001
+ret_val: 10
+Read message: 0000000001
+ret_val: 10
+'/dev/encrypter_project' device is successfully opened!
+Written message: 0000000001
+ret_val: 10
+Read message: 0000000001
+ret_val: 10
+'/dev/encrypter_project' device is successfully opened!
+Written message: 0000000001
+ret_val: 10
+Read message: 0000000001
+ret_val: 10
+'/dev/encrypter_project' device is successfully opened!
+Written message: 0000000001
+ret_val: 10
+Read message: 0000000001
+ret_val: 10
+'/dev/encrypter_project' device is successfully opened!
+Written message: 0000000001
+ret_val: 10
+Read message: 0000000001
+ret_val: 10
+'/dev/encrypter_project' device is successfully opened!
+Written message: 0000000001
+ret_val: 10
+Read message: 0000000001
+ret_val: 10
+'/dev/encrypter_project' device is successfully opened!
+Written message: 0000000001
+ret_val: 10
+Read message: 0000000001
+ret_val: 10
+'/dev/encrypter_project' device is successfully opened!
+Written message: 0000000001
+ret_val: 10
+Read message: 0000000001
+ret_val: 10
+'/dev/encrypter_project' device is successfully opened!
+Written message: 0000000001
+ret_val: 10
+Read message: 0000000001
+ret_val: 10
+Exiting consumer
+Exiting producer
+Exiting application

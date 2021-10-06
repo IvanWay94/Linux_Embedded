@@ -23,7 +23,7 @@ static pthread_mutex_t bufferAccess;
 
 static char msg[BUF_LEN];
 
-const char* enc_path = "/dev/encrypter";
+const char* enc_path = "/dev/encrypter_project";
 
 //default value for number of itterations
 int num_iter = 10;

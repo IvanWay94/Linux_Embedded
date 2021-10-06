@@ -24,10 +24,11 @@ LIB_DEBUG = $(LIB)
 LDFLAGS_DEBUG = $(LDFLAGS)
 OBJDIR_DEBUG = obj/Debug
 DEP_DEBUG =
-OUT_DEBUG = bin/Debug/vezba_2c
+OUT_DEBUG = bin/Debug/application
 
-OBJ_DEBUG = $(OBJDIR_DEBUG)/vezba_2c.o\
-	$(OBJDIR_DEBUG)/getch.o
+OBJ_DEBUG = $(OBJDIR_DEBUG)/application.o
+#OBJ_DEBUG = $(OBJDIR_DEBUG)/application.o\
+#	$(OBJDIR_DEBUG)/getch.o
 
 #----------------------------------------------------------------------
 #------------------- Makefile Release configuration -------------------
@@ -41,10 +42,11 @@ LIB_RELEASE = $(LIB)
 LDFLAGS_RELEASE = $(LDFLAGS)
 OBJDIR_RELEASE = obj/Release
 DEP_RELEASE =
-OUT_RELEASE = bin/Release/vezba_2c
+OUT_RELEASE = bin/Release/application
 
-OBJ_RELEASE = $(OBJDIR_RELEASE)/vezba_2c.o\
-	$(OBJDIR_RELEASE)/getch.o
+OBJ_RELEASE = $(OBJDIR_RELEASE)/application.o
+#OBJ_RELEASE = $(OBJDIR_RELEASE)/application.o\
+#	$(OBJDIR_RELEASE)/getch.o
 
 #----------------------------------------------------------------------
 #------------------------------- Targets ------------------------------
@@ -68,11 +70,11 @@ before_debug:
 out_debug: $(OBJ_DEBUG) $(DEP_DEBUG)
 	$(LD) $(LIBDIR_DEBUG) -o $(OUT_DEBUG) $(OBJ_DEBUG)  $(LDFLAGS_DEBUG) $(LIB_DEBUG)
 
-$(OBJDIR_DEBUG)/vezba_2c.o: $(SRC)/vezba_2c.c
-	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c $(SRC)/vezba_2c.c -o $(OBJDIR_DEBUG)/vezba_2c.o
+$(OBJDIR_DEBUG)/application.o: $(SRC)/application.c
+	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c $(SRC)/application.c -o $(OBJDIR_DEBUG)/application.o
 
-$(OBJDIR_DEBUG)/getch.o: $(SRC)/getch.c
-	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c $(SRC)/getch.c -o $(OBJDIR_DEBUG)/getch.o
+#$(OBJDIR_DEBUG)/getch.o: $(SRC)/getch.c
+#	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c $(SRC)/getch.c -o $(OBJDIR_DEBUG)/getch.o
 
 after_debug:
 
@@ -94,11 +96,11 @@ before_release:
 out_release: before_release $(OBJ_RELEASE) $(DEP_RELEASE)
 	$(LD) $(LIBDIR_RELEASE) -o $(OUT_RELEASE) $(OBJ_RELEASE)  $(LDFLAGS_RELEASE) $(LIB_RELEASE)
 
-$(OBJDIR_RELEASE)/vezba_2c.o: $(SRC)/vezba_2c.c
-	$(CXX) $(CFLAGS_RELEASE) $(INC_RELEASE) -c $(SRC)/vezba_2c.c -o $(OBJDIR_RELEASE)/vezba_2c.o
+$(OBJDIR_RELEASE)/application.o: $(SRC)/application.c
+	$(CXX) $(CFLAGS_RELEASE) $(INC_RELEASE) -c $(SRC)/application.c -o $(OBJDIR_RELEASE)/application.o
 
-$(OBJDIR_RELEASE)/getch.o: $(SRC)/getch.c
-	$(CXX) $(CFLAGS_RELEASE) $(INC_RELEASE) -c $(SRC)/getch.c -o $(OBJDIR_RELEASE)/getch.o
+#$(OBJDIR_RELEASE)/getch.o: $(SRC)/getch.c
+#	$(CXX) $(CFLAGS_RELEASE) $(INC_RELEASE) -c $(SRC)/getch.c -o $(OBJDIR_RELEASE)/getch.o
 
 after_release:
 

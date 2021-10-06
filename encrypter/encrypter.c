@@ -119,6 +119,7 @@ void encrypter_exit(void)
 
     /* Freeing the major number. */
     unregister_chrdev(encrypter_major, "encrypter");
+    printk(KERN_INFO "Encrypter module removed\n");	
 }
 
 /* File open function. */
