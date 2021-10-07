@@ -6,7 +6,6 @@ if [[ "${size}" -gt 0 ]]
 then 
 	echo "Removing module"
 	rmmod encrypter
-	#sleep 5
 fi
 
 echo "Inserting module"
@@ -14,13 +13,10 @@ echo "Inserting module"
 insmod ./encrypter/encrypter.ko howmany=${1} ee=${2}
 
 echo "Creating nod"
-echo `ls -al /dev/encrypter`
 mknod /dev/encrypter_project c 60 0
-echo `ls -al /dev/encrypter`
 
 echo "Starting application"
 ./application/bin/Release/application ${3} | tee log.txt
-#./application/bin/Release/application ${3}
 
 echo "Removing module"
 rmmod encrypter

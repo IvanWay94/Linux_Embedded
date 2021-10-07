@@ -12,12 +12,13 @@
 #include <stdbool.h>
 #include<time.h>
 
-#define SLEEPING_TIME (2000000)
+#define SLEEPING_TIME (500000)
 #define SLEEPING_TIME_TEST (200000)
 #define BUF_LEN		(50)
 /* Globalne promenljive. */
 
-static sem_t semaphore;
+static sem_t sem_prod;
+static sem_t sem_cons;
 
 static pthread_mutex_t bufferAccess;
 
@@ -51,57 +52,51 @@ void* producer (void *param)
     int file_desc;
     int ret_val;
     int prod_count = 0;
+    int prod_iter;
+    if(app_mode) prod_iter = num_iter;
+    else	 prod_iter = test_iter;
     while (1)
     {
-	    /* Open /dev/encrypter device. */
-	    file_desc = open(enc_path, O_RDWR);
-
-	    if(file_desc < 0)
-	    {
+	/* Open /dev/encrypter_project device. */
+	sem_wait(&sem_prod);
+	file_desc = open(enc_path, O_RDWR);
+	if(file_desc < 0)
+	{
 		printf("'%s' device isn't open\n", enc_path);
 		printf("Try:\t1) Check does '%s' node exist\n\t2)'chmod 666 /dev/ \
 		       encrypter'\n\t3) ""insmod"" encrypter module\n", enc_path);
 
-		continue;
-	    }
-	    printf("'%s' device is successfully opened!\n", enc_path);
-	    /* Write to /dev/encrypter device. */
-	    if(!app_mode)
-	    {		
-		if(prod_count < test_iter){
-			pthread_mutex_lock(&bufferAccess);	
-		    	ret_val = write(file_desc, msg, strlen(msg));
-		    	printf("Written message: %s\n", msg);
-		   	pthread_mutex_unlock(&bufferAccess);
-			printf("ret_val: %d\n", ret_val);			
-			close(file_desc);
-			sem_post(&semaphore);
-			usleep(SLEEPING_TIME_TEST);
-			prod_count++;
-			if(prod_count == test_iter){
-				printf("Exiting producer\n");
-				break; 
-			}				
-		}			
-	    }
-	    else{
-		if(prod_count < num_iter){
-		    pthread_mutex_lock(&bufferAccess);
-		    generate_random_message(msg, BUF_LEN);	
-		    ret_val = write(file_desc, msg, strlen(msg));
-		    printf("Written message: %s\n", msg);
-		    pthread_mutex_unlock(&bufferAccess);
-		    printf("ret_val: %d\n", ret_val);
-		    close(file_desc);
-		    sem_post(&semaphore);
-		    usleep(SLEEPING_TIME);
-		    prod_count++;
-		    if(prod_count == num_iter){
+		return 0;
+	}
+	printf("'%s' device is successfully opened!\n", enc_path);
+	/* Write to /dev/encrypter_project device. */
+	if(prod_count < prod_iter){
+		pthread_mutex_lock(&bufferAccess);
+		if(app_mode){
+			generate_random_message(msg, BUF_LEN);
+		}
+		ret_val = write(file_desc, msg, strlen(msg));
+		printf("Written message: %s\n", msg);
+		pthread_mutex_unlock(&bufferAccess);
+		printf("ret_val: %d\n", ret_val);			
+		close(file_desc);
+		sem_post(&sem_cons);
+		if(app_mode){
+			usleep(SLEEPING_TIME);
+		}
+		else{
+		        usleep(SLEEPING_TIME_TEST);
+		}
+		prod_count++;
+		if(prod_count == prod_iter){
 			printf("Exiting producer\n");
 			break; 
-		    }
 		}
-	    }  
+	}	
+	else{
+		close(file_desc);
+		break;
+	}	
     }
 
     return 0;
@@ -115,39 +110,32 @@ void* consumer (void *param)
     int con_count = 0;
     while (1)
     {	
-	if(con_count >= test_iter && !app_mode)
+	if(con_count >= test_iter || con_count >= num_iter)
 	{
 	    printf("Exiting consumer\n");
 	    break;
 	}
-	if(con_count >= num_iter && app_mode)
+	sem_wait(&sem_cons);	
+	file_desc = open(enc_path, O_RDWR);
+	if(file_desc < 0)
 	{
-	    printf("Exiting consumer\n");
-	    break;
-	}
-	sem_wait(&semaphore);	
-	    file_desc = open(enc_path, O_RDWR);
-	    if(file_desc < 0)
-	    {
 		printf("'%s' device isn't open\n", enc_path);
 		printf("Try:\t1) Check does '%s' node exist\n\t2)'chmod 666 /dev/ \
 		       encrypter'\n\t3) ""insmod"" encrypter module\n", enc_path);
 
-		continue;
-	    }
-
-	    pthread_mutex_lock(&bufferAccess);	
-	    memset(msg, 0, BUF_LEN);
-
-	    /* Read from /dev/encrypter device. */
-	    ret_val = read(file_desc, msg, BUF_LEN);
-	    printf("Read message: %s\n", msg);
-	    pthread_mutex_unlock(&bufferAccess);	
-	    printf("ret_val: %d\n", ret_val);
-
-	    /* Close /dev/encrypter device. */
-	    close(file_desc);
-	    con_count++;	
+		return 0;
+	}
+	pthread_mutex_lock(&bufferAccess);	
+	memset(msg, 0, BUF_LEN);
+	/* Read from /dev/encrypter_project device. */
+	ret_val = read(file_desc, msg, BUF_LEN);
+	printf("Read message: %s\n", msg);
+	pthread_mutex_unlock(&bufferAccess);	
+	printf("ret_val: %d\n", ret_val);
+	/* Close /dev/encrypter_project device. */
+	close(file_desc);
+	con_count++;
+	sem_post(&sem_prod);	
     }
 
     return 0;
@@ -180,7 +168,8 @@ int main (int argc, char *argv[])
     pthread_t hConsumer;
 
     /* Formiranje semFinishSignal semafora. */
-    sem_init(&semaphore, 0, 0);
+    sem_init(&sem_prod, 0, 1);
+    sem_init(&sem_cons, 0, 0);
 
     /* Inicijalizacija objekta iskljucivog pristupa. */
     pthread_mutex_init(&bufferAccess, NULL);
@@ -195,7 +184,8 @@ int main (int argc, char *argv[])
     
 
     /* Oslobadjanje resursa. */
-    sem_destroy(&semaphore);
+    sem_destroy(&sem_prod);
+    sem_destroy(&sem_cons);
     pthread_mutex_destroy(&bufferAccess);
 
     printf("Exiting application\n");
