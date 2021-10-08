@@ -75,7 +75,7 @@ int encrypter_init(void)
     printk(KERN_INFO "Inserting encrypter module (major number %d)\n", encrypter_major);
 
     /* Registering device. */
-    result = register_chrdev(encrypter_major, "encrypter_char_device", &encrypter_fops);
+    result = register_chrdev(encrypter_major, "encrypter", &encrypter_fops);
     if (result < 0)
     {
         printk(KERN_INFO "encrypter: cannot obtain major number %d\n", encrypter_major);

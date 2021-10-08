@@ -28,7 +28,6 @@ const char* enc_path = "/dev/encrypter_project";
 
 //default value for number of itterations
 int num_iter = 10;
-const int test_iter = 10;
 
 //true = default = normal, false = test mode
 bool app_mode = true;
@@ -37,14 +36,16 @@ void generate_random_message(char *src, size_t len)
 {
 	char rand_len;
 	int i;
-	srand(time(0));
+	
 	rand_len = rand() % 50 + 1;
 	printf("Random lenght generated: %d\n", rand_len);
+	fflush(stdout);
 	memset(src, 0, len);
 	for(i=0; i<rand_len; ++i){
 		src[i] = rand() % 62 + 65;
 	}
 	printf("Random message generated: %s\n", src);
+	fflush(stdout);
 }
 /* Funkcija programske niti proizvodjaca. */
 void* producer (void *param)
@@ -52,13 +53,13 @@ void* producer (void *param)
     int file_desc;
     int ret_val;
     int prod_count = 0;
-    int prod_iter;
-    if(app_mode) prod_iter = num_iter;
-    else	 prod_iter = test_iter;
+
+    srand(time(NULL));
+
     while (1)
     {
-	/* Open /dev/encrypter_project device. */
 	sem_wait(&sem_prod);
+	/* Open /dev/encrypter_project device. */
 	file_desc = open(enc_path, O_RDWR);
 	if(file_desc < 0)
 	{
@@ -66,19 +67,21 @@ void* producer (void *param)
 		printf("Try:\t1) Check does '%s' node exist\n\t2)'chmod 666 /dev/ \
 		       encrypter'\n\t3) ""insmod"" encrypter module\n", enc_path);
 
-		return 0;
+		return (void*)-1;
 	}
-	printf("'%s' device is successfully opened!\n", enc_path);
+	printf("\n[Producer]'%s' device is successfully opened!\n", enc_path);
+	fflush(stdout);
+
 	/* Write to /dev/encrypter_project device. */
-	if(prod_count < prod_iter){
+	if(prod_count < num_iter){
 		pthread_mutex_lock(&bufferAccess);
 		if(app_mode){
 			generate_random_message(msg, BUF_LEN);
 		}
 		ret_val = write(file_desc, msg, strlen(msg));
-		printf("Written message: %s\n", msg);
+		printf("[Producer] Written message: %s\n", msg);
 		pthread_mutex_unlock(&bufferAccess);
-		printf("ret_val: %d\n", ret_val);			
+		printf("[Producer] ret_val: %d\n", ret_val);			
 		close(file_desc);
 		sem_post(&sem_cons);
 		if(app_mode){
@@ -88,7 +91,7 @@ void* producer (void *param)
 		        usleep(SLEEPING_TIME_TEST);
 		}
 		prod_count++;
-		if(prod_count == prod_iter){
+		if(prod_count == num_iter){
 			printf("Exiting producer\n");
 			break; 
 		}
@@ -110,11 +113,12 @@ void* consumer (void *param)
     int con_count = 0;
     while (1)
     {	
-	if(con_count >= test_iter || con_count >= num_iter)
+	if(con_count >= num_iter)
 	{
-	    printf("Exiting consumer\n");
+	    printf("\nExiting consumer\n");
 	    break;
 	}
+
 	sem_wait(&sem_cons);	
 	file_desc = open(enc_path, O_RDWR);
 	if(file_desc < 0)
@@ -123,19 +127,22 @@ void* consumer (void *param)
 		printf("Try:\t1) Check does '%s' node exist\n\t2)'chmod 666 /dev/ \
 		       encrypter'\n\t3) ""insmod"" encrypter module\n", enc_path);
 
-		return 0;
+		return (void*)-1;
 	}
+	printf("[Consumer]'%s' device is successfully opened!\n", enc_path);
+
 	pthread_mutex_lock(&bufferAccess);	
 	memset(msg, 0, BUF_LEN);
 	/* Read from /dev/encrypter_project device. */
 	ret_val = read(file_desc, msg, BUF_LEN);
-	printf("Read message: %s\n", msg);
-	pthread_mutex_unlock(&bufferAccess);	
-	printf("ret_val: %d\n", ret_val);
+	printf("[Consumer] Read message: %s\n", msg);
+	pthread_mutex_unlock(&bufferAccess);
+
+	printf("[Consumer] ret_val: %d\n", ret_val);
 	/* Close /dev/encrypter_project device. */
 	close(file_desc);
 	con_count++;
-	sem_post(&sem_prod);	
+	sem_post(&sem_prod);
     }
 
     return 0;
@@ -145,7 +152,7 @@ void* consumer (void *param)
 int main (int argc, char *argv[])
 {
     if (argc > 2) {
-	fprintf(stderr, "ioctl: wrong number of arguments;\n");
+	fprintf(stderr, "wrong number of arguments;\n");
 	fprintf(stderr, "1st argument: app mode, i.e. test or number_of iterations in normal mode \n");
 	return -1;
     }
@@ -160,7 +167,6 @@ int main (int argc, char *argv[])
 	else{
 	    sscanf(argv[1], "%i", &num_iter);
 	}
-
     }
 
     /* Identifikatori niti. */
@@ -189,6 +195,6 @@ int main (int argc, char *argv[])
     pthread_mutex_destroy(&bufferAccess);
 
     printf("Exiting application\n");
-    
+    fflush(stdout);
     return 0;
 }

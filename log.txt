@@ -1,73 +1,112 @@
-'/dev/encrypter_project' device is successfully opened!
-Random lenght generated: 2
-Random message generated: pA
-Written message: pA
-ret_val: 2
-Read message: pA
-ret_val: 2
-'/dev/encrypter_project' device is successfully opened!
-Random lenght generated: 30
-Random message generated: ZYFLmNfEhVaduHqKg]CZ}`_HNEZvOA
-Written message: ZYFLmNfEhVaduHqKg]CZ}`_HNEZvOA
-ret_val: 30
-Read message: FLmNfEhVaduHqKg]CZ}`_HNEZvOAZY
-ret_val: 30
-'/dev/encrypter_project' device is successfully opened!
-Random lenght generated: 43
-Random message generated: Z_mhCyuRL]gJ`WqvjGOeIM{Wfqiyr]qN{]s{XgMaEsh
-Written message: Z_mhCyuRL]gJ`WqvjGOeIM{Wfqiyr]qN{]s{XgMaEsh
-ret_val: 43
-Read message: mhCyuRL]gJ`WqvjGOeIM{Wfqiyr]qN{]s{XgMaEshZ_
-ret_val: 43
-'/dev/encrypter_project' device is successfully opened!
+
+[Producer]'/dev/encrypter_project' device is successfully opened!
+Random lenght generated: 45
+Random message generated: gmFz^OCI^mqgnT{tERwJkbO]GWhRgo|M]DGxPGBksqT`F
+[Producer] Written message: gmFz^OCI^mqgnT{tERwJkbO]GWhRgo|M]DGxPGBksqT`F
+[Producer] ret_val: 45
+[Consumer]'/dev/encrypter_project' device is successfully opened!
+[Consumer] Read message: gmFz^OCI^mqgnT{tERwJkbO]GWhRgo|M]DGxPGBksqT`F
+[Consumer] ret_val: 45
+
+[Producer]'/dev/encrypter_project' device is successfully opened!
+Random lenght generated: 34
+Random message generated: UI_MRIl^dqrKDZwAeSBkMRqL|ezODB\XHz
+[Producer] Written message: UI_MRIl^dqrKDZwAeSBkMRqL|ezODB\XHz
+[Producer] ret_val: 34
+[Consumer]'/dev/encrypter_project' device is successfully opened!
+[Consumer] Read message: UI_MRIl^dqrKDZwAeSBkMRqL|ezODB\XHz
+[Consumer] ret_val: 34
+
+[Producer]'/dev/encrypter_project' device is successfully opened!
+Random lenght generated: 36
+Random message generated: YCNtf~hnAAfAexAQDPCPKeKZfJu{Qo_gql]V
+[Producer] Written message: YCNtf~hnAAfAexAQDPCPKeKZfJu{Qo_gql]V
+[Producer] ret_val: 36
+[Consumer]'/dev/encrypter_project' device is successfully opened!
+[Consumer] Read message: YCNtf~hnAAfAexAQDPCPKeKZfJu{Qo_gql]V
+[Consumer] ret_val: 36
+
+[Producer]'/dev/encrypter_project' device is successfully opened!
+Random lenght generated: 37
+Random message generated: DEiDjgiagwetxtA\|ZDHP~V|^{nIWCqZGY]n~
+[Producer] Written message: DEiDjgiagwetxtA\|ZDHP~V|^{nIWCqZGY]n~
+[Producer] ret_val: 37
+[Consumer]'/dev/encrypter_project' device is successfully opened!
+[Consumer] Read message: DEiDjgiagwetxtA\|ZDHP~V|^{nIWCqZGY]n~
+[Consumer] ret_val: 37
+
+[Producer]'/dev/encrypter_project' device is successfully opened!
+Random lenght generated: 9
+Random message generated: Qf|uZujZR
+[Producer] Written message: Qf|uZujZR
+[Producer] ret_val: 9
+[Consumer]'/dev/encrypter_project' device is successfully opened!
+[Consumer] Read message: Qf|uZujZR
+[Consumer] ret_val: 9
+
+[Producer]'/dev/encrypter_project' device is successfully opened!
+Random lenght generated: 45
+Random message generated: sUjBSB~nzkwRngkt~Gd}LtbIh{}SVNwHaaHsbGb[oXl^}
+[Producer] Written message: sUjBSB~nzkwRngkt~Gd}LtbIh{}SVNwHaaHsbGb[oXl^}
+[Producer] ret_val: 45
+[Consumer]'/dev/encrypter_project' device is successfully opened!
+[Consumer] Read message: sUjBSB~nzkwRngkt~Gd}LtbIh{}SVNwHaaHsbGb[oXl^}
+[Consumer] ret_val: 45
+
+[Producer]'/dev/encrypter_project' device is successfully opened!
+Random lenght generated: 8
+Random message generated: R|^sxif[
+[Producer] Written message: R|^sxif[
+[Producer] ret_val: 8
+[Consumer]'/dev/encrypter_project' device is successfully opened!
+[Consumer] Read message: R|^sxif[
+[Consumer] ret_val: 8
+
+[Producer]'/dev/encrypter_project' device is successfully opened!
+Random lenght generated: 23
+Random message generated: OXkakyWq[uxMX|nplF]JDr[
+[Producer] Written message: OXkakyWq[uxMX|nplF]JDr[
+[Producer] ret_val: 23
+[Consumer]'/dev/encrypter_project' device is successfully opened!
+[Consumer] Read message: OXkakyWq[uxMX|nplF]JDr[
+[Consumer] ret_val: 23
+
+[Producer]'/dev/encrypter_project' device is successfully opened!
+Random lenght generated: 17
+Random message generated: RMvxrPiBeU`PMtBek
+[Producer] Written message: RMvxrPiBeU`PMtBek
+[Producer] ret_val: 17
+[Consumer]'/dev/encrypter_project' device is successfully opened!
+[Consumer] Read message: RMvxrPiBeU`PMtBek
+[Consumer] ret_val: 17
+
+[Producer]'/dev/encrypter_project' device is successfully opened!
+Random lenght generated: 29
+Random message generated: qBr_r]dPfeD~aSLVJ}ep~LE_[QSZv
+[Producer] Written message: qBr_r]dPfeD~aSLVJ}ep~LE_[QSZv
+[Producer] ret_val: 29
+[Consumer]'/dev/encrypter_project' device is successfully opened!
+[Consumer] Read message: qBr_r]dPfeD~aSLVJ}ep~LE_[QSZv
+[Consumer] ret_val: 29
+
+[Producer]'/dev/encrypter_project' device is successfully opened!
+Random lenght generated: 31
+Random message generated: Rh~EFqaiAGMDFkTPB]NeMLnQhH_zaVx
+[Producer] Written message: Rh~EFqaiAGMDFkTPB]NeMLnQhH_zaVx
+[Producer] ret_val: 31
+[Consumer]'/dev/encrypter_project' device is successfully opened!
+[Consumer] Read message: Rh~EFqaiAGMDFkTPB]NeMLnQhH_zaVx
+[Consumer] ret_val: 31
+
+[Producer]'/dev/encrypter_project' device is successfully opened!
 Random lenght generated: 40
-Random message generated: E_m]`D\\fAbXwqUVehFbfidfwBlqJcBMCmibpE|W
-Written message: E_m]`D\\fAbXwqUVehFbfidfwBlqJcBMCmibpE|W
-ret_val: 40
-Read message: m]`D\\fAbXwqUVehFbfidfwBlqJcBMCmibpE|WE_
-ret_val: 40
-'/dev/encrypter_project' device is successfully opened!
-Random lenght generated: 12
-Random message generated: WEL{ypoGNCvu
-Written message: WEL{ypoGNCvu
-ret_val: 12
-Read message: L{ypoGNCvuWE
-ret_val: 12
-'/dev/encrypter_project' device is successfully opened!
-Random lenght generated: 28
-Random message generated: W}IebFm|WbOn~PvUcU[Fkty}ClMo
-Written message: W}IebFm|WbOn~PvUcU[Fkty}ClMo
-ret_val: 28
-Read message: IebFm|WbOn~PvUcU[Fkty}ClMoW}
-ret_val: 28
-'/dev/encrypter_project' device is successfully opened!
-Random lenght generated: 16
-Random message generated: UD~[pTGebHbCVBdi
-Written message: UD~[pTGebHbCVBdi
-ret_val: 16
-Read message: ~[pTGebHbCVBdiUD
-ret_val: 16
-'/dev/encrypter_project' device is successfully opened!
-Random lenght generated: 46
-Random message generated: AjCP]CsNkcT]{{rOo`mxRdosIDvOxCzyl|JJ|zVg\iEXct
-Written message: AjCP]CsNkcT]{{rOo`mxRdosIDvOxCzyl|JJ|zVg\iEXct
-ret_val: 46
-Read message: CP]CsNkcT]{{rOo`mxRdosIDvOxCzyl|JJ|zVg\iEXctAj
-ret_val: 46
-'/dev/encrypter_project' device is successfully opened!
-Random lenght generated: 10
-Random message generated: a[~DPsv_lD
-Written message: a[~DPsv_lD
-ret_val: 10
-Read message: ~DPsv_lDa[
-ret_val: 10
-'/dev/encrypter_project' device is successfully opened!
-Random lenght generated: 24
-Random message generated: ibNgADOh_suO}KJeIRV_sjaD
-Written message: ibNgADOh_suO}KJeIRV_sjaD
-ret_val: 24
-Read message: NgADOh_suO}KJeIRV_sjaDib
-ret_val: 24
+Random message generated: |vrCfRjfXtg\azi`WvFcAsqgxQbZgZKbQzbtNK\c
+[Producer] Written message: |vrCfRjfXtg\azi`WvFcAsqgxQbZgZKbQzbtNK\c
+[Producer] ret_val: 40
+[Consumer]'/dev/encrypter_project' device is successfully opened!
+[Consumer] Read message: |vrCfRjfXtg\azi`WvFcAsqgxQbZgZKbQzbtNK\c
+[Consumer] ret_val: 40
+
 Exiting consumer
 Exiting producer
 Exiting application
