@@ -218,10 +218,6 @@ static ssize_t encrypter_write(struct file *filp, const char *buf, size_t len, l
     {
         if(ee){
 		rotate_array_left(encrypter_buffer, strlen(encrypter_buffer), howmany);
-                /* Encrypt received data. */      	
-                /*for(i=0; i < len; ++i){
-                        encrypter_buffer[i] = ~encrypter_buffer[i];
-                }*/
         }
         return len;
     }

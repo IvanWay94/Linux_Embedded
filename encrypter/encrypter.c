@@ -13,14 +13,14 @@
  /* Declaring kernel module settings: */
 MODULE_LICENSE("Dual BSD/GPL");
 
-MODULE_AUTHOR("RT-RK Linux course example");
+MODULE_AUTHOR("Room 2 Syrmia");
 
-MODULE_DESCRIPTION("Tiny encryption module. The module takes up to 80 "
-                    "characters from the user and applies an encryption " 
-                    "function. The module returns to the user up to 80 "
+MODULE_DESCRIPTION("Tiny encryption module. The module takes up to 50 "
+                    "characters from the user and applies an rotation " 
+                    "function. The module returns to the user up to 50 "
                     "characters (encrypted). For the debug purposes the "
-                    "encryption functionality can be disabled using ioctl "
-                    "interface.");
+                    "encryption functionality can be disabled by setting"
+		    "0 to ee flag");
 
 #define BUF_LEN 50
 
